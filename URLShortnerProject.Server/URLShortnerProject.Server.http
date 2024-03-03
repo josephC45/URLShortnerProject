@@ -1,0 +1,6 @@
+@URLShortnerProject.Server_HostAddress = http://localhost:5209
+
+GET {{URLShortnerProject.Server_HostAddress}}/Main/
+Accept: application/json
+
+###
