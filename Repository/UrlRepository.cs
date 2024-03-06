@@ -36,7 +36,7 @@ namespace Repository
 
         public async Task<ShortenedURL?> GetShortenedUrl(string longUrl)
         {
-            return await _db.ShortnedURL.FirstOrDefaultAsync(url => url.Equals(longUrl));
+            return await _db.ShortnedURL.FirstOrDefaultAsync(url => url.LongURL.Equals(longUrl));
         }
 
         public async Task<ShortenedURL> UpdateShortenedUrl(string longUrl)
