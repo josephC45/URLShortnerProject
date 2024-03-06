@@ -26,7 +26,6 @@ namespace URLShortnerAPI.Controllers
                 return JsonSerializer.Serialize(error);
 
             }
-            //For testing purposes
             String s = returningUrl.ShortURL + "1";
             return JsonSerializer.Serialize(s);
         }
