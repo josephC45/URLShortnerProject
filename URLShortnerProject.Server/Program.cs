@@ -1,5 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
+using Repository;
+using RepositoryInterfaces;
 using URLShortnerAPI.DatabaseContext;
 
 namespace URLShortnerProject.Server
@@ -13,6 +15,7 @@ namespace URLShortnerProject.Server
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddScoped<IUrlRepository, UrlRepository>();
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
