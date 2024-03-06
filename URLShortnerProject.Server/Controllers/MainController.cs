@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Entities.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RepositoryInterfaces;
 using System.Text.Json;
 
 namespace URLShortnerAPI.Controllers
@@ -8,10 +10,23 @@ namespace URLShortnerAPI.Controllers
     [ApiController]
     public class MainController : ControllerBase
     {
-        [HttpGet]
-        public async Task<ActionResult<string>> Get()
+        private readonly IUrlRepository _urlRepository;
+        public MainController(IUrlRepository urlRepository)
         {
-            String s = "Hello World";
+            _urlRepository = urlRepository;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<string>> Get(string longUrl)
+        {
+            ShortenedURL returningUrl = await _urlRepository.GetShortenedUrl(longUrl);
+            if(returningUrl == null )
+            {
+                String error = "Error occurred did not find record";
+                return JsonSerializer.Serialize(error);
+
+            }
+            String s = returningUrl.ShortURL + "1";
             return JsonSerializer.Serialize(s);
         }
 

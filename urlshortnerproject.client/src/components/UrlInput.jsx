@@ -13,7 +13,7 @@ export default function UrlInput() {
                   <label>URL to shorten</label>
                     <input onChange={handleShortenInput} type="url"/>
                 </p>
-               <Button className="sub" buttonName="Shorten" />
+                <Button className="sub" buttonName="Shorten" longUrl={shortenState} />
             </div>
         </div>
     );

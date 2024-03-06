@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-export default function Button({ buttonName, CssClass }) {
+export default function Button({ buttonName, CssClass, longUrl }) {
     const [buttonClick, setButtonClick] = useState(false);
     const [error, setError] = useState();
     const [resp, setResponse] = useState(null);
@@ -8,7 +8,7 @@ export default function Button({ buttonName, CssClass }) {
         setButtonClick(true);
 
         try {
-            const response = await fetch('Main', {
+            const response = await fetch(`Main/?longUrl=${longUrl}`, {
                 method: 'GET',
                 headers: {
                     Accept: 'application/json',
