@@ -1,14 +1,16 @@
-import { useState, useEffect } from 'react';
-export default function Button({ buttonName, CssClass, longUrl }) {
+import { useState,  useContext } from 'react';
+import { UrlContext } from '../store/url_context';
+export default function Button({ buttonName, CssClass }) {
     const [buttonClick, setButtonClick] = useState(false);
     const [error, setError] = useState();
     const [resp, setResponse] = useState(null);
+    const urlCtx = useContext(UrlContext);
 
     const handleClick = async () => {
         setButtonClick(true);
 
         try {
-            const response = await fetch(`Main/?longUrl=${longUrl}`, {
+            const response = await fetch(`Main/?longUrl=${urlCtx.longUrl}`, {
                 method: 'GET',
                 headers: {
                     Accept: 'application/json',
