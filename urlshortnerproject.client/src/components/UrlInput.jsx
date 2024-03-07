@@ -21,7 +21,7 @@ export default function UrlInput() {
                       <label>URL to shorten</label>
                       <input onChange={handleShortenInput} type="url"/>
                     </p>
-                    <Button className="sub" buttonName="Shorten"/>
+                    <Button CssClass="sub" buttonName="Shorten"/>
                 </div>
             </div>
         </UrlContext.Provider>
