@@ -12,14 +12,19 @@ namespace Repository
         {
             this._db = db;
         }
-
+        
         public async Task<ShortenedURL> CreateShortenedUrl(string longUrl)
         {
-            ShortenedURL? url = await GetShortenedUrl(longUrl);
-            if(url == null) return await UpdateShortenedUrl(url.LongURL);
-            //Generate new shorturl with hash, and return shorturl obj
-            return null;
-            
+            ShortenedURL shortUrl = new ShortenedURL();
+            /* Key and ShortUrl values are 
+             * placeholders until I work out the hashing
+            */
+            shortUrl.Key = "1";
+            shortUrl.ShortURL = "t1";
+            shortUrl.LongURL = longUrl;
+            await _db.AddAsync(shortUrl);
+            await _db.SaveChangesAsync();
+            return shortUrl;
         }
 
         public async Task<bool> DeleteUrl(string longUrl)

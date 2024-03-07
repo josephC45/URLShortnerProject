@@ -19,29 +19,24 @@ namespace URLShortnerAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<string>> Get(string longUrl)
         {
-            ShortenedURL returningUrl = await _urlRepository.GetShortenedUrl(longUrl);
-            if(returningUrl == null )
+            ShortenedURL? returningUrl = await _urlRepository.GetShortenedUrl(longUrl);
+            if(returningUrl == null)
             {
-                String error = "Error occurred did not find record";
-                return JsonSerializer.Serialize(error);
-
+                returningUrl = await _urlRepository.CreateShortenedUrl(longUrl);
             }
-            String s = returningUrl.ShortURL + "1";
-            return JsonSerializer.Serialize(s);
+            return JsonSerializer.Serialize(returningUrl.ShortURL);
         }
 
         [HttpPut]
-        public string Put()
+        /*
+         * My idea is that the put command will handle creating
+         * and updating records within db depending on whether the longUrl exists or not.
+         * The return of a string is a placeholder for now. May be returning the entire ShortUrl obj since my plan is to have a link showing the shorturl that then redirects to the original longurl. Will need to look into whether I am able to redirect to this action from the get method above ^
+         */
+        public async Task<ActionResult<string>> Put(string longUrl)
         {
-            return "Hello world";
-
-        }
-
-        [HttpPost]
-        public string Post()
-        {
-            return "Hello world";
-
+            ShortenedURL newShortUrl = await _urlRepository.CreateShortenedUrl(longUrl);
+            return JsonSerializer.Serialize(newShortUrl.ShortURL);
         }
 
         [HttpDelete]
@@ -50,8 +45,5 @@ namespace URLShortnerAPI.Controllers
             return "Hello world";
 
         }
-
-
-
     }
 }
