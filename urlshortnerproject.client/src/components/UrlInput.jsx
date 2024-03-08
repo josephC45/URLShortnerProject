@@ -1,30 +1,46 @@
 import { useState } from 'react';
-import { UrlContext } from '../store/url_context'
-import Button from './Button';
 export default function UrlInput() {
-    const [shortenState, setShortenState] = useState({
-        longUrl: null,
-    });
-    function handleShortenInput(context) {
-        setShortenState(context.target.value);
-    } 
-
-    const urlCtx = {
-        longUrl: shortenState
+    const [submission, setSubmission] = useState(false);
+    const [response, setFormResponse] = useState();
+    const [error, setError] = useState();
+    async function makeApiCall(url){
+        try {
+            const response = await fetch(`Main/?longUrl=${url}`, {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                },
+            });
+            if (!response.ok) {
+                throw new Error(`Error status : ${response.status}`);
+            }
+            const result = await response.json();
+            setFormResponse(result);
+        } catch (err) {
+            setError(err.message);
+        }
     };
 
+    function handleSubmission(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const enteredUrl = formData.get('longUrl');
+        makeApiCall(enteredUrl);
+        setSubmission(true);
+    }
+
     return (
-         <UrlContext.Provider value={urlCtx}>
+        <form onSubmit={handleSubmission}>
             <div id="main-box">
                 <div className="controls">
                     <p>
                       <label>URL to shorten</label>
-                      <input onChange={handleShortenInput} type="url"/>
+                      <input type="text" name='longUrl'/>
                     </p>
-                    <Button CssClass="sub" buttonName="Shorten"/>
+                    <button className="sub">Shorten</button>
+                    {(submission) ? <p>{response}</p> : null}
                 </div>
             </div>
-        </UrlContext.Provider>
-
+        </form>
     );
 }
