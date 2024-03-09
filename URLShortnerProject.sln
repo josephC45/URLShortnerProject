@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "URLShortnerProject.Server", "URLShortnerProject.Server\URLShortnerProject.Server.csproj", "{EB31F206-23F4-4EDB-9BF6-31A4F89300D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "URLShortnerProject.Server", "URLShortnerProject.Server\URLShortnerProject.Server.csproj", "{EB31F206-23F4-4EDB-9BF6-31A4F89300D5}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "urlshortnerproject.client", "urlshortnerproject.client\urlshortnerproject.client.esproj", "{63FD7ABA-B860-4BB2-B523-2698C5241211}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryInterfaces", "RepositoryInterfaces\RepositoryInterfaces.csproj", "{3F19A09B-4287-46A8-81AB-BAF594A00AC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryInterfaces", "RepositoryInterfaces\RepositoryInterfaces.csproj", "{3F19A09B-4287-46A8-81AB-BAF594A00AC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{B856F73D-143E-4662-8F8C-75124A306331}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{B856F73D-143E-4662-8F8C-75124A306331}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{DC0AD227-B27B-47A5-B0E7-7D622F0503C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{DC0AD227-B27B-47A5-B0E7-7D622F0503C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashGenerator", "GUIDCreator\HashGenerator.csproj", "{42C92C36-8E25-4A30-AB77-68EB26FBDC75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Constants", "Constants\Constants.csproj", "{5F67C689-D845-41AD-A0DF-39D9693709FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,14 @@ Global
 		{DC0AD227-B27B-47A5-B0E7-7D622F0503C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC0AD227-B27B-47A5-B0E7-7D622F0503C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC0AD227-B27B-47A5-B0E7-7D622F0503C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42C92C36-8E25-4A30-AB77-68EB26FBDC75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42C92C36-8E25-4A30-AB77-68EB26FBDC75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42C92C36-8E25-4A30-AB77-68EB26FBDC75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42C92C36-8E25-4A30-AB77-68EB26FBDC75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F67C689-D845-41AD-A0DF-39D9693709FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F67C689-D845-41AD-A0DF-39D9693709FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F67C689-D845-41AD-A0DF-39D9693709FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F67C689-D845-41AD-A0DF-39D9693709FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
