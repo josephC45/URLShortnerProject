@@ -9,10 +9,10 @@ namespace HashGenerator
         {
             return DateTimeOffset.Now.ToUnixTimeMilliseconds();
         }
-        private string BaseConversion(long timeOffSet)
+        private string BaseConversion(long timeOffset)
         {
             StringBuilder resultantHash = new StringBuilder();
-            long curTime = timeOffSet;
+            long curTime = timeOffset;
             while (curTime > 0)
              {
                long temp = curTime % ProjConstants.baseConversion;
