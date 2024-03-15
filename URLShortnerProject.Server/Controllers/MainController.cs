@@ -23,6 +23,11 @@ namespace URLShortnerAPI.Controllers
             {
                 returningUrl = await _urlRepository.CreateShortenedUrl(longUrl);
             }
+            else
+            {
+                return JsonSerializer.Serialize(returningUrl.LongURL);
+
+            }
             return JsonSerializer.Serialize(returningUrl.ShortURL);
         }
 
