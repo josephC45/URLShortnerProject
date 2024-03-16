@@ -1,9 +1,9 @@
 import { useState } from 'react';
+import Alert from '@mui/material/Alert';
 export default function UrlInput() {
     const [submission, setSubmission] = useState(false);
     const [response, setFormResponse] = useState();
     const [error, setError] = useState();
-
     function isValidURL(urlFromApiResponse) {
         let url;
         try {
@@ -13,12 +13,10 @@ export default function UrlInput() {
         }
         return url.protocol === "https:" || url.protocol === "http:";
     }
-
     // Will be looking into a better way of redirecting
     function redirect(url) {
         window.location.href = url;
     }
-
     async function makeApiCall(url){
         try {
             const response = await fetch(`Main/?longUrl=${url}`, {
@@ -39,7 +37,6 @@ export default function UrlInput() {
             setError(err.message);
         }
     };
-
     function handleSubmission(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -57,7 +54,7 @@ export default function UrlInput() {
                       <input type="url" name='longUrl' required/>
                     </p>
                     <button className="sub">Shorten</button>
-                    {(submission) ? <p>{response}</p> : null}
+                    {(submission) ? <Alert severity="success">Successful submission</Alert> : null}
                 </div>
             </div>
         </form>
