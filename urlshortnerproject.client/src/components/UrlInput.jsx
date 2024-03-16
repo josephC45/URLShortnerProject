@@ -54,7 +54,7 @@ export default function UrlInput() {
                 <div className="controls">
                     <p>
                       <label>URL to shorten</label>
-                      <input type="text" name='longUrl'/>
+                      <input type="url" name='longUrl' required/>
                     </p>
                     <button className="sub">Shorten</button>
                     {(submission) ? <p>{response}</p> : null}
