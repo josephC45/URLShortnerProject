@@ -16,19 +16,15 @@ namespace URLShortnerAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<string>> Get(string longUrl)
+        public async Task<ActionResult<ShortenedURL>?> Get(string longUrl)
         {
             ShortenedURL? returningUrl = await _urlRepository.GetShortenedUrl(longUrl);
             if(returningUrl == null)
             {
-                returningUrl = await _urlRepository.CreateShortenedUrl(longUrl);
+                await _urlRepository.CreateShortenedUrl(longUrl);
+                return null;
             }
-            else
-            {
-                return JsonSerializer.Serialize(returningUrl.LongURL);
-
-            }
-            return JsonSerializer.Serialize(returningUrl.ShortURL);
+            return returningUrl;
         }
 
         [HttpPut]
