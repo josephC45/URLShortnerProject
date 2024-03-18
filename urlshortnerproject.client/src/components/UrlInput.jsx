@@ -17,9 +17,11 @@ function isValidURL(urlFromApiResponse) {
 export default function UrlInput() {
     const [submission, setSubmission] = useState(false);
     const [response, setFormResponse] = useState(null);
-    const [error, setError] = useState();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     async function makeApiCall(url){
         try {
+            setLoading(true);
             const response = await fetch(`Main/?longUrl=${url}`, {
                 method: 'GET',
                 headers: {
@@ -35,6 +37,8 @@ export default function UrlInput() {
             setFormResponse(result.shortURL);
         } catch (err) {
             setError(err.message);
+        } finally {
+            setLoading(false);
         }
     };
     function handleSubmission(event) {
@@ -49,12 +53,13 @@ export default function UrlInput() {
         <form onSubmit={handleSubmission}>
             <div id="main-box">
                 <div className="controls">
-                    <p>
+                    <div>
                       <label>URL to shorten</label>
                       <input type="url" name='longUrl' required/>
-                    </p>
-                    <button className="sub">Shorten</button>
-                    {(submission) ? <Alert severity="success">Successful submission</Alert> : null}
+                    </div>
+                    <button className="sub" disabled={loading}>Shorten</button>
+                    {loading && <span>Loading...</span>}
+                    {submission && !loading && <Alert severity="success">Successful submission</Alert>}
                 </div>
             </div>
         </form>
